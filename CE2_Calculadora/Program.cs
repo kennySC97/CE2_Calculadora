@@ -1,3 +1,4 @@
+using CE2_Calculadora.modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Windows.Forms;
 namespace CE2_Calculadora
 {
     static class Program
-    {
+    {               
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -17,7 +19,7 @@ namespace CE2_Calculadora
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new formCalculadora());
         }
     }
 }
