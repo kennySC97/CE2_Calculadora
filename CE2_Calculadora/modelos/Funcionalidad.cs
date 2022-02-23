@@ -25,6 +25,11 @@ namespace CE2_Calculadora.modelos
             this.memoria = new Memoria(0);
         }
 
+        public void setNumeroActivo(decimal numeroActivo)
+        {
+            this.numeroActivo = numeroActivo;
+        }
+
         public string getNumeroPantalla()
         {            
             return Convert.ToString(this.numeroActivo);
@@ -35,7 +40,7 @@ namespace CE2_Calculadora.modelos
             return this.log_operacion;
         }
 
-        public void generarLogOperacion(decimal numeroSecundario)
+        public void generarLogOperacion(string numeroSecundario)
         {
             this.log_operacion = $"{this.numeroActivo} {this.operacion} {numeroSecundario}"; 
         }
@@ -50,11 +55,18 @@ namespace CE2_Calculadora.modelos
             return operacion;
         }
 
+        public void cancelar()
+        {
+            numeroActivo = 0;
+            operacion = "";
+            log_operacion = "";
+        }
+
         #region Metodos de Operaciones
 
         public void calcular(decimal numeroSecundario)
         {
-            generarLogOperacion(numeroSecundario);
+            generarLogOperacion(numeroSecundario.ToString());
 
             switch(this.operacion)
             {
@@ -106,24 +118,24 @@ namespace CE2_Calculadora.modelos
             
         }
 
-        public void sumarMemoria()
+        public void sumarMemoria(decimal numero)
         {
-            memoria.sumarNumeroGuardado(numeroActivo);
+            memoria.sumarNumeroGuardado(numero);
         }
 
-        public void restarMemoria()
+        public void restarMemoria(decimal numero)
         {
-            memoria.restarNumeroGuardado(numeroActivo);
+            memoria.restarNumeroGuardado(numero);
         }
 
-        public void guardaMemoria()
+        public void guardaMemoria(decimal numero)
         {
-            memoria.guardarMemoria(numeroActivo);
+            memoria.guardarMemoria(numero);
         }
 
-        public void llamarMemoria()
+        public decimal llamarMemoria()
         {
-            numeroActivo = memoria.getNumeroGuardado();
+            return memoria.getNumeroGuardado();
         }
 
         public void borrarMemoria()

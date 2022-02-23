@@ -29,6 +29,7 @@ namespace CE2_Calculadora
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formCalculadora));
             this.panel2 = new System.Windows.Forms.Panel();
             this.btn_igual = new System.Windows.Forms.Button();
@@ -60,6 +61,13 @@ namespace CE2_Calculadora
             this.btn_MC = new System.Windows.Forms.Button();
             this.lbl_pantalla = new System.Windows.Forms.Label();
             this.lbl_log = new System.Windows.Forms.Label();
+            this.lbl_mem = new System.Windows.Forms.Label();
+            this.ttp_MC = new System.Windows.Forms.ToolTip(this.components);
+            this.ttp_MR = new System.Windows.Forms.ToolTip(this.components);
+            this.ttp_MS = new System.Windows.Forms.ToolTip(this.components);
+            this.ttp_MSuma = new System.Windows.Forms.ToolTip(this.components);
+            this.ttp_MResta = new System.Windows.Forms.ToolTip(this.components);
+            this.ttp_igual = new System.Windows.Forms.ToolTip(this.components);
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,7 +100,7 @@ namespace CE2_Calculadora
             this.panel2.Controls.Add(this.btn_MS);
             this.panel2.Controls.Add(this.btn_MR);
             this.panel2.Controls.Add(this.btn_MC);
-            this.panel2.Location = new System.Drawing.Point(1, 140);
+            this.panel2.Location = new System.Drawing.Point(1, 153);
             this.panel2.Name = "panel2";
             this.panel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.panel2.Size = new System.Drawing.Size(365, 368);
@@ -107,7 +115,9 @@ namespace CE2_Calculadora
             this.btn_igual.Size = new System.Drawing.Size(64, 106);
             this.btn_igual.TabIndex = 26;
             this.btn_igual.Text = "=";
+            this.ttp_igual.SetToolTip(this.btn_igual, "CTRL - Enter");
             this.btn_igual.UseVisualStyleBackColor = false;
+            this.btn_igual.Click += new System.EventHandler(this.calcular);
             // 
             // btn_cero
             // 
@@ -119,7 +129,7 @@ namespace CE2_Calculadora
             this.btn_cero.TabIndex = 25;
             this.btn_cero.Text = "0";
             this.btn_cero.UseVisualStyleBackColor = false;
-            this.btn_cero.Click += new System.EventHandler(this.btn_cero_Click);
+            this.btn_cero.Click += new System.EventHandler(this.colocarNumero);
             // 
             // btn_suma
             // 
@@ -131,6 +141,7 @@ namespace CE2_Calculadora
             this.btn_suma.TabIndex = 24;
             this.btn_suma.Text = "+";
             this.btn_suma.UseVisualStyleBackColor = false;
+            this.btn_suma.Click += new System.EventHandler(this.setearOperacion);
             // 
             // btn_coma
             // 
@@ -154,6 +165,7 @@ namespace CE2_Calculadora
             this.btn_resta.TabIndex = 22;
             this.btn_resta.Text = "-";
             this.btn_resta.UseVisualStyleBackColor = false;
+            this.btn_resta.Click += new System.EventHandler(this.setearOperacion);
             // 
             // btn_tres
             // 
@@ -165,7 +177,7 @@ namespace CE2_Calculadora
             this.btn_tres.TabIndex = 21;
             this.btn_tres.Text = "3";
             this.btn_tres.UseVisualStyleBackColor = false;
-            this.btn_tres.Click += new System.EventHandler(this.btn_tres_Click);
+            this.btn_tres.Click += new System.EventHandler(this.colocarNumero);
             // 
             // btn_dos
             // 
@@ -177,7 +189,7 @@ namespace CE2_Calculadora
             this.btn_dos.TabIndex = 20;
             this.btn_dos.Text = "2";
             this.btn_dos.UseVisualStyleBackColor = false;
-            this.btn_dos.Click += new System.EventHandler(this.btn_dos_Click);
+            this.btn_dos.Click += new System.EventHandler(this.colocarNumero);
             // 
             // btn_uno
             // 
@@ -189,7 +201,7 @@ namespace CE2_Calculadora
             this.btn_uno.TabIndex = 19;
             this.btn_uno.Text = "1";
             this.btn_uno.UseVisualStyleBackColor = false;
-            this.btn_uno.Click += new System.EventHandler(this.btn_uno_Click);
+            this.btn_uno.Click += new System.EventHandler(this.colocarNumero);
             // 
             // btn_modulo
             // 
@@ -201,6 +213,7 @@ namespace CE2_Calculadora
             this.btn_modulo.TabIndex = 18;
             this.btn_modulo.Text = "MOD";
             this.btn_modulo.UseVisualStyleBackColor = false;
+            this.btn_modulo.Click += new System.EventHandler(this.setearOperacion);
             // 
             // btn_multiplicacion
             // 
@@ -212,6 +225,7 @@ namespace CE2_Calculadora
             this.btn_multiplicacion.TabIndex = 17;
             this.btn_multiplicacion.Text = "*";
             this.btn_multiplicacion.UseVisualStyleBackColor = false;
+            this.btn_multiplicacion.Click += new System.EventHandler(this.setearOperacion);
             // 
             // btn_seis
             // 
@@ -223,7 +237,7 @@ namespace CE2_Calculadora
             this.btn_seis.TabIndex = 16;
             this.btn_seis.Text = "6";
             this.btn_seis.UseVisualStyleBackColor = false;
-            this.btn_seis.Click += new System.EventHandler(this.btn_seis_Click);
+            this.btn_seis.Click += new System.EventHandler(this.colocarNumero);
             // 
             // btn_cinco
             // 
@@ -235,7 +249,7 @@ namespace CE2_Calculadora
             this.btn_cinco.TabIndex = 15;
             this.btn_cinco.Text = "5";
             this.btn_cinco.UseVisualStyleBackColor = false;
-            this.btn_cinco.Click += new System.EventHandler(this.btn_cinco_Click);
+            this.btn_cinco.Click += new System.EventHandler(this.colocarNumero);
             // 
             // btn_cuatro
             // 
@@ -247,7 +261,7 @@ namespace CE2_Calculadora
             this.btn_cuatro.TabIndex = 14;
             this.btn_cuatro.Text = "4";
             this.btn_cuatro.UseVisualStyleBackColor = false;
-            this.btn_cuatro.Click += new System.EventHandler(this.btn_cuatro_Click);
+            this.btn_cuatro.Click += new System.EventHandler(this.colocarNumero);
             // 
             // btn_porcentage
             // 
@@ -270,6 +284,7 @@ namespace CE2_Calculadora
             this.btn_division.TabIndex = 12;
             this.btn_division.Text = "/";
             this.btn_division.UseVisualStyleBackColor = false;
+            this.btn_division.Click += new System.EventHandler(this.setearOperacion);
             // 
             // btn_nueve
             // 
@@ -281,7 +296,7 @@ namespace CE2_Calculadora
             this.btn_nueve.TabIndex = 11;
             this.btn_nueve.Text = "9";
             this.btn_nueve.UseVisualStyleBackColor = false;
-            this.btn_nueve.Click += new System.EventHandler(this.btn_nueve_Click);
+            this.btn_nueve.Click += new System.EventHandler(this.colocarNumero);
             // 
             // btn_ocho
             // 
@@ -293,7 +308,7 @@ namespace CE2_Calculadora
             this.btn_ocho.TabIndex = 10;
             this.btn_ocho.Text = "8";
             this.btn_ocho.UseVisualStyleBackColor = false;
-            this.btn_ocho.Click += new System.EventHandler(this.btn_ocho_Click);
+            this.btn_ocho.Click += new System.EventHandler(this.colocarNumero);
             // 
             // btn_siete
             // 
@@ -305,7 +320,7 @@ namespace CE2_Calculadora
             this.btn_siete.TabIndex = 9;
             this.btn_siete.Text = "7";
             this.btn_siete.UseVisualStyleBackColor = false;
-            this.btn_siete.Click += new System.EventHandler(this.btn_siete_Click);
+            this.btn_siete.Click += new System.EventHandler(this.colocarNumero);
             // 
             // btn_signo
             // 
@@ -317,6 +332,7 @@ namespace CE2_Calculadora
             this.btn_signo.TabIndex = 8;
             this.btn_signo.Text = "+-";
             this.btn_signo.UseVisualStyleBackColor = false;
+            this.btn_signo.Click += new System.EventHandler(this.btn_signo_Click);
             // 
             // btn_C
             // 
@@ -328,6 +344,7 @@ namespace CE2_Calculadora
             this.btn_C.TabIndex = 7;
             this.btn_C.Text = "C";
             this.btn_C.UseVisualStyleBackColor = false;
+            this.btn_C.Click += new System.EventHandler(this.btn_C_Click);
             // 
             // btn_CE
             // 
@@ -339,6 +356,7 @@ namespace CE2_Calculadora
             this.btn_CE.TabIndex = 6;
             this.btn_CE.Text = "CE";
             this.btn_CE.UseVisualStyleBackColor = false;
+            this.btn_CE.Click += new System.EventHandler(this.btn_CE_Click);
             // 
             // btn_borrar
             // 
@@ -350,10 +368,12 @@ namespace CE2_Calculadora
             this.btn_borrar.TabIndex = 5;
             this.btn_borrar.Text = "⬅";
             this.btn_borrar.UseVisualStyleBackColor = false;
+            this.btn_borrar.Click += new System.EventHandler(this.btn_borrar_Click);
             // 
             // btn_MResta
             // 
             this.btn_MResta.BackColor = System.Drawing.Color.LemonChiffon;
+            this.btn_MResta.Enabled = false;
             this.btn_MResta.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_MResta.Location = new System.Drawing.Point(290, 30);
             this.btn_MResta.Name = "btn_MResta";
@@ -361,11 +381,14 @@ namespace CE2_Calculadora
             this.btn_MResta.Size = new System.Drawing.Size(64, 50);
             this.btn_MResta.TabIndex = 4;
             this.btn_MResta.Text = "M-";
+            this.ttp_MResta.SetToolTip(this.btn_MResta, "CTRL - Q");
             this.btn_MResta.UseVisualStyleBackColor = false;
+            this.btn_MResta.Click += new System.EventHandler(this.btn_MResta_Click);
             // 
             // btn_MSuma
             // 
             this.btn_MSuma.BackColor = System.Drawing.Color.LemonChiffon;
+            this.btn_MSuma.Enabled = false;
             this.btn_MSuma.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_MSuma.Location = new System.Drawing.Point(220, 30);
             this.btn_MSuma.Name = "btn_MSuma";
@@ -373,7 +396,9 @@ namespace CE2_Calculadora
             this.btn_MSuma.Size = new System.Drawing.Size(64, 50);
             this.btn_MSuma.TabIndex = 3;
             this.btn_MSuma.Text = "M+";
+            this.ttp_MSuma.SetToolTip(this.btn_MSuma, "CTRL - P");
             this.btn_MSuma.UseVisualStyleBackColor = false;
+            this.btn_MSuma.Click += new System.EventHandler(this.btn_MSuma_Click);
             // 
             // btn_MS
             // 
@@ -384,29 +409,37 @@ namespace CE2_Calculadora
             this.btn_MS.Size = new System.Drawing.Size(64, 50);
             this.btn_MS.TabIndex = 2;
             this.btn_MS.Text = "MS";
+            this.ttp_MS.SetToolTip(this.btn_MS, "CTRL - M");
             this.btn_MS.UseVisualStyleBackColor = false;
+            this.btn_MS.Click += new System.EventHandler(this.btn_MS_Click);
             // 
             // btn_MR
             // 
             this.btn_MR.BackColor = System.Drawing.Color.LemonChiffon;
+            this.btn_MR.Enabled = false;
             this.btn_MR.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_MR.Location = new System.Drawing.Point(81, 30);
             this.btn_MR.Name = "btn_MR";
             this.btn_MR.Size = new System.Drawing.Size(64, 50);
             this.btn_MR.TabIndex = 1;
             this.btn_MR.Text = "MR";
+            this.ttp_MR.SetToolTip(this.btn_MR, "CTRL - R");
             this.btn_MR.UseVisualStyleBackColor = false;
+            this.btn_MR.Click += new System.EventHandler(this.btn_MR_Click);
             // 
             // btn_MC
             // 
             this.btn_MC.BackColor = System.Drawing.Color.LemonChiffon;
+            this.btn_MC.Enabled = false;
             this.btn_MC.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_MC.Location = new System.Drawing.Point(11, 30);
             this.btn_MC.Name = "btn_MC";
             this.btn_MC.Size = new System.Drawing.Size(64, 50);
             this.btn_MC.TabIndex = 0;
             this.btn_MC.Text = "MC";
+            this.ttp_MC.SetToolTip(this.btn_MC, "CTRL - L");
             this.btn_MC.UseVisualStyleBackColor = false;
+            this.btn_MC.Click += new System.EventHandler(this.btn_MC_Click);
             // 
             // lbl_pantalla
             // 
@@ -415,7 +448,7 @@ namespace CE2_Calculadora
             this.lbl_pantalla.Font = new System.Drawing.Font("Segoe UI Symbol", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_pantalla.Location = new System.Drawing.Point(12, 15);
             this.lbl_pantalla.Name = "lbl_pantalla";
-            this.lbl_pantalla.Size = new System.Drawing.Size(344, 113);
+            this.lbl_pantalla.Size = new System.Drawing.Size(344, 135);
             this.lbl_pantalla.TabIndex = 2;
             this.lbl_pantalla.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
@@ -427,23 +460,40 @@ namespace CE2_Calculadora
             this.lbl_log.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.lbl_log.Location = new System.Drawing.Point(12, 15);
             this.lbl_log.Name = "lbl_log";
-            this.lbl_log.Size = new System.Drawing.Size(344, 32);
+            this.lbl_log.Size = new System.Drawing.Size(344, 58);
             this.lbl_log.TabIndex = 3;
             this.lbl_log.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            // 
+            // lbl_mem
+            // 
+            this.lbl_mem.BackColor = System.Drawing.Color.FloralWhite;
+            this.lbl_mem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_mem.Font = new System.Drawing.Font("Segoe UI Symbol", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_mem.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbl_mem.Location = new System.Drawing.Point(182, 15);
+            this.lbl_mem.Name = "lbl_mem";
+            this.lbl_mem.Size = new System.Drawing.Size(173, 26);
+            this.lbl_mem.TabIndex = 4;
+            this.lbl_mem.Text = "Mem clear";
+            this.lbl_mem.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // formCalculadora
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(367, 509);
+            this.ClientSize = new System.Drawing.Size(367, 533);
+            this.Controls.Add(this.lbl_mem);
             this.Controls.Add(this.lbl_log);
             this.Controls.Add(this.lbl_pantalla);
             this.Controls.Add(this.panel2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(462, 675);
+            this.KeyPreview = true;
+            this.MaximumSize = new System.Drawing.Size(385, 580);
+            this.MinimumSize = new System.Drawing.Size(385, 580);
             this.Name = "formCalculadora";
             this.Text = "Calculadora";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.manejadorAtajos);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -480,6 +530,13 @@ namespace CE2_Calculadora
         private System.Windows.Forms.Button btn_MR;
         private System.Windows.Forms.Button btn_MC;
         private System.Windows.Forms.Label lbl_log;
+        private System.Windows.Forms.Label lbl_mem;
+        private System.Windows.Forms.ToolTip ttp_MC;
+        private System.Windows.Forms.ToolTip ttp_MR;
+        private System.Windows.Forms.ToolTip ttp_MS;
+        private System.Windows.Forms.ToolTip ttp_MSuma;
+        private System.Windows.Forms.ToolTip ttp_MResta;
+        private System.Windows.Forms.ToolTip ttp_igual;
     }
 }
 
