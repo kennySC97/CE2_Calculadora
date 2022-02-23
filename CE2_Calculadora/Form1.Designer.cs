@@ -273,6 +273,7 @@ namespace CE2_Calculadora
             this.btn_porcentage.TabIndex = 13;
             this.btn_porcentage.Text = "%";
             this.btn_porcentage.UseVisualStyleBackColor = false;
+            this.btn_porcentage.Click += new System.EventHandler(this.setearPorcentaje);
             // 
             // btn_division
             // 

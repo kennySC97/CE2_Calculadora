@@ -88,6 +88,28 @@ namespace CE2_Calculadora.modelos
             }
         }
 
+        public string getPorcentagePorOperacion(string numConvertir)
+        {
+            string respuesta = "";
+            if (numConvertir.Contains("."))
+            {
+                numConvertir = numConvertir.Remove(numConvertir.IndexOf("."), 1);
+            }
+
+            decimal numConvertido = Convert.ToDecimal($"0.{numConvertir}");
+
+            if (operacion == "+" || operacion == "-")
+            {
+                respuesta = Convert.ToString(numeroActivo * numConvertido); 
+            }
+            else if (operacion == "*" || operacion == "/")
+            {
+                respuesta = Convert.ToString(numConvertido);
+            }
+
+            return respuesta;
+        }
+
         public void sumar(decimal numeroSecundario)
         {
             numeroActivo = numeroActivo + numeroSecundario;

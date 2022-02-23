@@ -34,11 +34,11 @@ namespace CE2_Calculadora
             {   
                 if (lbl_pantalla.Text.Length <= 0)
                 {
-                    lbl_pantalla.Text = "0,";
+                    lbl_pantalla.Text = "0.";
                 }
-                else if (!lbl_pantalla.Text.Contains(","))
+                else if (!lbl_pantalla.Text.Contains("."))
                 {
-                    lbl_pantalla.Text += ",";
+                    lbl_pantalla.Text += ".";
                 }
             }
 
@@ -95,11 +95,12 @@ namespace CE2_Calculadora
             {
                 funcionalidad.setNumeroActivo(Convert.ToDecimal(lbl_pantalla.Text));
             }
+
             Button btn = (Button)sender;
             if (btn.Text == "MOD")
             {
                 funcionalidad.setOperacion("mod");
-            } 
+            }
             else
             {
                 funcionalidad.setOperacion(btn.Text);
@@ -107,6 +108,21 @@ namespace CE2_Calculadora
             funcionalidad.generarLogOperacion("");
             lbl_log.Text = funcionalidad.getLogOperacion();
             lbl_pantalla.Text = "";
+        }
+
+        private void setearPorcentaje(object sender, EventArgs e)
+        {
+            if (lbl_pantalla.Text.Length > 0)
+            {
+                if (lbl_pantalla.Text != "0")
+                {
+                    lbl_pantalla.Text = funcionalidad.getPorcentagePorOperacion(lbl_pantalla.Text);
+                }
+            }
+            else
+            {
+                lbl_pantalla.Text = "0";
+            }
         }
 
         private void calcular(object sender, EventArgs e)
